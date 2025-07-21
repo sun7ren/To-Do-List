@@ -1,6 +1,5 @@
 import { Playfair_700Bold } from "@expo-google-fonts/playfair";
 import { useFonts } from "expo-font";
-import { Link } from "expo-router";
 import React, { useState } from "react";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -56,9 +55,10 @@ const Index = () => {
       <SafeAreaView>
         <Text style={[styles.playfair, { marginHorizontal: 25, marginTop: 25 }]}>To Do List</Text>
         <View>
-          <Link href="/progress" style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 5 }]}>
-            <Text style={[styles.playfair, { fontSize: 20 }]}> View Your Progress </Text>
-          </Link>
+          <View style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 5 }]}>
+            <Text style={[styles.playfair, { fontSize: 20 }]}> Your Progress </Text>
+            {countTask == 0 ? <Text> 0 %</Text> : <Text> {(countCheck / countTask) * 100} % </Text>}
+          </View>
           <View style={{flexDirection: 'row', marginLeft: 15, marginBottom: 15}}>
             <Text style={[styles.box, styles.playfair, {fontSize: 18, paddingRight: 35}]}> {countTask} {'\n'} Amount of Tasks </Text>
             <Text style={[styles.box, styles.playfair, {fontSize: 18, paddingRight: 20}]}> {countCheck} {'\n'} Completed Tasks </Text>
@@ -93,7 +93,7 @@ const Index = () => {
                     <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleDelete(item.key); setCountTask(countTask - 1); setCountCheck(countCheck - 1)}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Delete</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.checkButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleCheck(item.key); setCountCheck(countCheck + 1)}}>
+                    <TouchableOpacity style={[styles.checkButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleCheck(item.key); item.check ? setCountCheck(countCheck - 1): setCountCheck(countCheck + 1)}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Check</Text>
                     </TouchableOpacity>
                   </View>
@@ -133,10 +133,12 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   background: {
-    backgroundColor: 'rgba(212, 128, 194, 1)',
+    backgroundColor: 'rgba(255, 206, 244, 1)',
+    borderWidth: 1,
+    borderColor:'rgba(255, 183, 239, 1)',
     borderRadius: 10,
     padding: 10,
-    color: 'white',
+    color: 'rgba(125, 74, 115, 1)',
   },
   task: {
     fontSize: 18,
