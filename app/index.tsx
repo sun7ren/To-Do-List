@@ -52,7 +52,7 @@ const Index = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <Text style={[styles.playfair, { marginHorizontal: 25, marginTop: 25 }]}>To Do List</Text>
         <View>
           <View style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 5 }]}>
@@ -90,7 +90,7 @@ const Index = () => {
                 borderColor: item.check? 'rgba(210, 196, 74, 1)': 'rgba(163, 87, 146, 1)'}]}>
                   <Text style={[styles.task, {textDecorationLine: item.check? 'line-through' : 'none'}]}>{item.text}</Text>
                   <View style={{flexDirection: 'row'}}> 
-                    <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleDelete(item.key); setCountTask(countTask - 1); setCountCheck(countCheck - 1)}}>
+                    <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleDelete(item.key); setCountTask(countTask - 1); countCheck > 0 ? setCountCheck(countCheck - 1): countCheck}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Delete</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.checkButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleCheck(item.key); item.check ? setCountCheck(countCheck - 1): setCountCheck(countCheck + 1)}}>
