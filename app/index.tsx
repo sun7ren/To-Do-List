@@ -1,7 +1,6 @@
 import { Playfair_700Bold } from "@expo-google-fonts/playfair";
 import { useFonts } from "expo-font";
 import { Link } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -19,6 +18,8 @@ const Index = () => {
 
   const [inputValue, setInputValue] = useState<string>('');
   const [task, setTask] = useState<TaskItem[]>([]);
+  const [countTask, setCountTask] = useState(0);
+  const [countCheck, setCountCheck] = useState(0);
 
   if (!fontsLoaded) {
     return (
@@ -55,9 +56,13 @@ const Index = () => {
       <SafeAreaView>
         <Text style={[styles.playfair, { marginHorizontal: 25, marginTop: 25 }]}>To Do List</Text>
         <View>
-          <Link href="/progress" style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 10 }]}>
+          <Link href="/progress" style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 5 }]}>
             <Text style={[styles.playfair, { fontSize: 20 }]}> View Your Progress </Text>
           </Link>
+          <View style={{flexDirection: 'row', marginLeft: 15, marginBottom: 15}}>
+            <Text style={[styles.box, styles.playfair, {fontSize: 18, paddingRight: 35}]}> {countTask} {'\n'} Amount of Tasks </Text>
+            <Text style={[styles.box, styles.playfair, {fontSize: 18, paddingRight: 20}]}> {countCheck} {'\n'} Completed Tasks </Text>
+          </View>
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -67,7 +72,7 @@ const Index = () => {
             value={inputValue}
             onChangeText={(text) => setInputValue(text)}
           />
-          <TouchableOpacity style={styles.button} onPress={handleToDo}>
+          <TouchableOpacity style={styles.button} onPress={() => {handleToDo(); setCountTask(countTask + 1)}}>
             <Text style={{ color: 'white' }}>Add</Text>
           </TouchableOpacity>
         </View>
@@ -85,10 +90,10 @@ const Index = () => {
                 borderColor: item.check? 'rgba(210, 196, 74, 1)': 'rgba(163, 87, 146, 1)'}]}>
                   <Text style={[styles.task, {textDecorationLine: item.check? 'line-through' : 'none'}]}>{item.text}</Text>
                   <View style={{flexDirection: 'row'}}> 
-                    <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => handleDelete(item.key)}>
+                    <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleDelete(item.key); setCountTask(countTask - 1); setCountCheck(countCheck - 1)}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Delete</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.checkButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => handleCheck(item.key)}>
+                    <TouchableOpacity style={[styles.checkButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleCheck(item.key); setCountCheck(countCheck + 1)}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Check</Text>
                     </TouchableOpacity>
                   </View>
@@ -96,14 +101,14 @@ const Index = () => {
               ))}
             </ScrollView>
         }
-
-        <StatusBar style="auto" />
+        
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
 export default Index;
+export { TaskItem };
 
 const styles = StyleSheet.create({
   playfair: {
@@ -164,5 +169,12 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 5,
     marginTop: 5,
+  },
+  box: {
+    backgroundColor: 'rgba(212, 128, 194, 1)',
+    padding: 10,
+    margin: 5,
+    borderRadius: 10,
+    color: 'white'
   }
 });
