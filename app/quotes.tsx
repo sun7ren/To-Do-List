@@ -3,6 +3,7 @@ import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
+import Footer from './footer';
 import { styles } from './styles';
 
 const dropdownData = [
@@ -92,6 +93,7 @@ const getQuotes = () => {
                 keyExtractor={item => item.id}
                 />
             )}
+            <Footer />
         </SafeAreaView>
     </SafeAreaProvider>
   )
