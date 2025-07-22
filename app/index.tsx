@@ -1,5 +1,6 @@
 import { Playfair_700Bold } from "@expo-google-fonts/playfair";
 import { useFonts } from "expo-font";
+import { Link } from "expo-router";
 import React, { useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -56,10 +57,11 @@ const Index = () => {
     <SafeAreaProvider>
       <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
         <Text style={[styles.playfair, { marginHorizontal: 25, marginTop: 25 }]}>To Do List</Text>
+        
         <View>
           <View style={[styles.background, { marginHorizontal: 20, marginTop: 5, marginBottom: 5 }]}>
             <Text style={[styles.playfair, { fontSize: 20 }]}> Your Progress </Text>
-            {countTask == 0 ? <Text> 0 %</Text> : <Text> {(countCheck / countTask) * 100} % </Text>}
+            {countTask == 0 ? <Text> 0 %</Text> : <Text> {Math.round((countCheck / countTask) * 100)} % </Text>}
           </View>
           <View style={{flexDirection: 'row', marginLeft: 15, marginBottom: 15}}>
             <Text style={[styles.box, styles.playfair, {fontSize: 18, paddingRight: 35}]}> {countTask} {'\n'} Amount of Tasks </Text>
@@ -72,7 +74,7 @@ const Index = () => {
             style={[styles.input, { flex: 1 }]}
             placeholder="Enter your task"
             value={inputValue}
-            onChangeText={(text) => setInputValue(text)}
+            onChangeText={(inputValue) => setInputValue(inputValue)}
           />
           <TouchableOpacity style={styles.button} onPress={() => {handleToDo(); setCountTask(countTask + 1)}}>
             <Text style={{ color: 'white' }}>Add</Text>
@@ -90,7 +92,10 @@ const Index = () => {
                 {flexDirection: 'column', 
                 backgroundColor: item.check? 'rgba(253, 251, 221, 1)': 'rgba(255, 236, 251, 1)',
                 borderColor: item.check? 'rgba(210, 196, 74, 1)': 'rgba(163, 87, 146, 1)'}]}>
-                  <Text style={[styles.task, {textDecorationLine: item.check? 'line-through' : 'none'}]}>{item.text}</Text>
+                  <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <Text style={[styles.task, {textDecorationLine: item.check? 'line-through' : 'none'}]}>{item.text}</Text>
+                    <Text style={[styles.playfair, {fontSize: 12, color: 'rgba(125, 74, 115, 1)'}]}> {new Date(item.key).toString()} </Text>
+                  </View>
                   <View style={{flexDirection: 'row'}}> 
                     <TouchableOpacity style={[styles.deleteButton, {backgroundColor: item.check? 'rgba(200, 196, 89, 1)': 'rgba(162, 91, 148, 1)'}]} onPress={() => {handleDelete(item.key); setCountTask(countTask - 1); countCheck > 0 ? setCountCheck(countCheck - 1): countCheck}}>
                       <Text style={{ color: 'white', textAlign: 'center' }}>Delete</Text>
@@ -103,10 +108,15 @@ const Index = () => {
               ))}
             </ScrollView>
         }
-        
+
+        <View style={{backgroundColor: 'purple', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 20, padding: 8, borderRadius: 10, width: 180, alignSelf: 'center', marginBottom: 15}}>
+          <Link href="/quotes" style={[styles.playfair, {color: 'white', fontSize: 20}]}>Need Motivation?</Link>
+        </View>
+
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
 export default Index;
+export { TaskItem };
