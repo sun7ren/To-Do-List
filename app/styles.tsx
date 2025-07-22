@@ -69,5 +69,33 @@ export const styles = StyleSheet.create({
     margin: 5,
     borderRadius: 10,
     color: 'white'
-  }
+  },
+  item: {
+        backgroundColor: 'rgba(255, 206, 244, 1)',
+        padding: 20,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 10,
+    },
+    title: {
+        fontSize: 18,
+    },
+    quote: {
+        fontSize: 16,
+        fontStyle: 'italic',
+    },
+    author: {
+        fontSize: 14,
+        textAlign: 'right',
+        color: 'darkblue',
+    },
+    container: {
+        flex: 1,
+        paddingTop: 50,
+        alignItems: 'center',
+        backgroundColor: '#ffff',
+    },
+
 });
+
+export default styles;
