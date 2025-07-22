@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
+import Footer from "./footer";
 import { styles } from './styles';
 
 interface TaskItem {
@@ -113,6 +114,7 @@ const Index = () => {
           <Link href="/quotes" style={[styles.playfair, {color: 'white', fontSize: 20}]}>Need Motivation?</Link>
         </View>
 
+        <Footer />
       </SafeAreaView>
     </SafeAreaProvider>
   );
