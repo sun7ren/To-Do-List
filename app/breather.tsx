@@ -15,39 +15,49 @@ const image = {
 const Breather = ({}) => {
   const [count, setCount] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     let timerId: number;
-    if (timeRemaining > 0) {
+    if (isRunning && timeRemaining > 0) {
       timerId = setInterval(() => {
         setTimeRemaining((prev) => prev - 1);
       }, 1000);
     }
+    if (isRunning && timeRemaining <= 0) {
+      setIsRunning(false);
+      setTimeRemaining(0);
+    }
+
     return () => {
       if (timerId) clearInterval(timerId);
     };
-  }, [timeRemaining]);
+  }, [isRunning, timeRemaining]);
 
   const handleCountDown = (startCount: number) => {
     setTimeRemaining(startCount * 60);
+    setIsRunning(true);
   };
 
-  const handleResume = (startCount: number) => {
-    if (timeRemaining > 0) {
-        setTimeRemaining(timeRemaining + startCount * 60);
+  const handlePause = () => {
+    setIsRunning(!isRunning);
+    if (!isRunning) {
+      setTimeRemaining(timeRemaining);
     }
-    };
+  };
 
-    const handleStop = () => {
-        setTimeRemaining(0);
-    }
+  const handleStop = () => {
+    setTimeRemaining(0);
+    setIsRunning(false);
+  };
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
-        <Text style={[styles.playfair, {margin: 20 , color: 'rgba(99, 21, 83, 1)'}]}>Take a Breath!</Text>
+      <ImageBackground source={backgroundImage} resizeMode="cover" style={{ flex: 1, justifyContent: 'center' }}>
+      <SafeAreaView>
+        <Text style={[styles.playfair, {margin: 20 , color: 'rgba(99, 21, 83, 1)', marginTop: -120}]}>Take a Breath!</Text>
         <Image source={image} style={[styles.image, {width: 240, marginLeft: 120, height: 205}]}/>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{justifyContent: 'center', alignItems: 'center' }}>
             <Text style={[styles.playfair, {marginBottom: 10, color: 'rgba(162, 91, 148, 1)'}]}> Count Down</Text>
             <Text style={[styles.playfair, {fontSize: 25}]}>{timeRemaining} seconds</Text>
         </View>
@@ -64,16 +74,16 @@ const Breather = ({}) => {
             <TouchableOpacity onPress={() => { setCount(0); handleCountDown(count); }} style={{margin: 5, padding: 15, backgroundColor: 'rgba(162, 91, 148, 1)', borderRadius: 5 }}>
                 <Text style={{ color: 'white'}}>Start</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { setCount(0); handleResume(count); }} style={{margin: 5, padding: 15, backgroundColor: 'rgba(162, 91, 148, 1)', borderRadius: 5 }}>
+            <TouchableOpacity onPress={() => { setCount(0); handlePause(); }} style={{margin: 5, padding: 15, backgroundColor: 'rgba(162, 91, 148, 1)', borderRadius: 5 }}>
                 <Text style={{ color: 'white'}}>Resume</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => { setCount(0); handleStop(); }} style={{margin: 5, padding: 15, backgroundColor: 'rgba(162, 91, 148, 1)', borderRadius: 5 }}>
                 <Text style={{ color: 'white'}}>Stop</Text>
             </TouchableOpacity>
         </View>
-        <ImageBackground source={backgroundImage} resizeMode="cover" style={{ flex: 1, justifyContent: 'center' }} />
-        <Footer />
       </SafeAreaView>
+      <Footer />
+      </ImageBackground>
     </SafeAreaProvider>
   );
 };
