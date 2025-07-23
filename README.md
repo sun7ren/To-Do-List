@@ -12,14 +12,19 @@ This application consists of three (3) pages
 </div>
 
 
-> The main page displays this when there are no Tasks displayed. On the Screen, there exists a Progress tracker percentage according to the amount of tasks displayed and checked tasks (tasks that have been completed). The number of tasks displayed and the checked tasks are counted through a useState that tracks the amount of onPress() actions have been executed towards the "Add" and "Check" buttons. The deletion button works to remove the task displayed completely and deduct an index from both the check and amount of tasks done.
+The main page displays this when there are no Tasks displayed. On the Screen, there exists a Progress tracker percentage according to the amount of tasks displayed and checked tasks (tasks that have been completed). The number of tasks displayed and the checked tasks are counted through a useState that tracks the amount of onPress() actions have been executed towards the "Add" and "Check" buttons. The deletion button works to remove the task displayed completely and deduct an index from both the check and amount of tasks done.
 
+
+## Quotes (quotes.tsx) 
 
 <div align="center">
     <img width="206" height="622" alt="simulator_screenshot_739A0FFF-D6EA-4850-B03A-75C0811D7356" src="https://github.com/user-attachments/assets/d757f153-d330-47ff-9b0c-95e802fca899" />
     <img width="206" height="622" alt="simulator_screenshot_0B657F9F-F4C1-4616-8455-B97EAF75EF60" src="https://github.com/user-attachments/assets/0887088d-5d71-4d68-8ff3-8659a0ae8e7a" />
     <img width="206" height="622" alt="simulator_screenshot_EFC13A78-1EFF-4A06-A7FF-6F200BB40A4E" src="https://github.com/user-attachments/assets/bcc31698-f26d-466c-8c78-4155738a1813" />
 </div>
+
+
+## Breather (breather.tsx) 
 
 <div align="center">
     <img width="206" height="622" alt="simulator_screenshot_66D03848-4D90-421C-8CD1-089C5515C8B4" src="https://github.com/user-attachments/assets/622eca7f-d859-4e6e-8c3b-c976e15c72a3" />
