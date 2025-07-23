@@ -37,8 +37,8 @@ const apiPractice = () => {
     Quotes();
   }, []);
 
-const getQuotes = () => {
-    if (data.length === 0) {
+const getQuotes = (inputValue: string) => {
+    if (inputValue.length === 0) {
         Quotes();
     } else {
         const filteredData = data.filter(item =>
@@ -73,7 +73,7 @@ const getQuotes = () => {
                 />
                 <TouchableOpacity
                     style={[styles.button, {marginTop: 10, marginBottom: 10}]}
-                    onPress={() => getQuotes()}
+                    onPress={() => getQuotes(inputValue)}
                 >
                     <Text style={{color: 'white'}}>Search</Text>
                 </TouchableOpacity>
