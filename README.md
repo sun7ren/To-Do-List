@@ -7,6 +7,7 @@ This application consists of three (3) pages
 ## Home Page (Index.tsx)
 <img width="206" height="622" alt="simulator_screenshot_30D8BDEE-0D86-4059-8386-39858C2885F3" src="https://github.com/user-attachments/assets/c7782bed-d3d1-4bd3-a5a5-170dd23f1aa1" />
 <img width="206" height="622" alt="simulator_screenshot_570C844A-1990-422D-8361-1184CDBF8F13" src="https://github.com/user-attachments/assets/650e7b18-692a-4ba3-9bc5-1404f6d0b4dc" />
+
 - The main page displays this when there are no Tasks displayed. On the Screen, there exists a Progress tracker percentage according to the amount of tasks displayed and checked tasks (tasks that have been completed).
 - The number of tasks displayed and the checked tasks are counted through a useState that tracks the amount of onPress() actions have been executed towards the "Add" and "Check" buttons. The deletion button works to remove the task displayed completely and deduct an index from both the check and amount of tasks done.
 
