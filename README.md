@@ -15,7 +15,7 @@ This application consists of three (3) pages
 
 - Explanation
   
-        The main page displays this when there are no Tasks displayed. On the Screen, there exists a Progress tracker percentage according to the amount of tasks             displayed and checked tasks (tasks that have been completed). The number of tasks displayed and the checked tasks are counted through a useState that tracks the           amount of onPress() actions have been executed towards the "Add" and "Check" buttons. The deletion button works to remove the task displayed completely and deduct an      index from both the check and amount of tasks done.
+  The main page displays this when there are no Tasks displayed. On the Screen, there exists a Progress tracker percentage according to the amount of tasks             displayed and checked tasks (tasks that have been completed). The number of tasks displayed and the checked tasks are counted through a useState that tracks the           amount of onPress() actions have been executed towards the "Add" and "Check" buttons. The deletion button works to remove the task displayed completely and deduct an      index from both the check and amount of tasks done.
 
 
 ## Motivation (quotes.tsx) 
@@ -30,7 +30,7 @@ This application consists of three (3) pages
 
 - Explanation
   
-        The second page is where the quotes from the API is loaded. A search filter can be seen to filter quotes that contain a specific word. The search filter uses           useState to identify whether there is an empty string or a dedicated value to search for. An empty string retrieves all the quotes from the API whereas a string with      value returns filtered quotes. There also exists a dropdown for the backgroung and overall theme of the page. This makes use of arrays and useStates.
+  The second page is where the quotes from the API is loaded. A search filter can be seen to filter quotes that contain a specific word. The search filter uses           useState to identify whether there is an empty string or a dedicated value to search for. An empty string retrieves all the quotes from the API whereas a string with      value returns filtered quotes. There also exists a dropdown for the backgroung and overall theme of the page. This makes use of arrays and useStates.
 
 
 ## Timer (breather.tsx) 
@@ -44,5 +44,5 @@ This application consists of three (3) pages
 
 - Explanation
   
-        Lastly, the Timer page serves as a practice for the useEffect & useState Hook. It utilizes useState to keep the number of Minutes the user may wish to set the         timer to. The useEffect takes care of the count down using setIntervals. Three of the buttons are dependent on the "isRunning" state which determines the action of        the timer.
+  Lastly, the Timer page serves as a practice for the useEffect & useState Hook. It utilizes useState to keep the number of Minutes the user may wish to set the         timer to. The useEffect takes care of the count down using setIntervals. Three of the buttons are dependent on the "isRunning" state which determines the action of        the timer.
         
