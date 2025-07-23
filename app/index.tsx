@@ -39,6 +39,7 @@ const Index = () => {
     if (inputValue.length > 0) {
       setTask([...task, { text: inputValue, key: Date.now(), check: false}]);
       setInputValue('');
+      setCountTask(countTask + 1)
     }
   };
 
@@ -77,7 +78,7 @@ const Index = () => {
             value={inputValue}
             onChangeText={(inputValue) => setInputValue(inputValue)}
           />
-          <TouchableOpacity style={styles.button} onPress={() => {handleToDo(); setCountTask(countTask + 1)}}>
+          <TouchableOpacity style={styles.button} onPress={() => {handleToDo();}}>
             <Text style={{ color: 'white' }}>Add</Text>
           </TouchableOpacity>
         </View>
